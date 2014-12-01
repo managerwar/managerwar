@@ -1,0 +1,154 @@
+﻿@model WebsiteCreatorMVC.Models.RoundIDViewModel
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    if (Model.Fish == "Squid")
+    {
+        <form action="https://www.asmoney.com/sci.aspx" id="form1" method="post">
+            <input type="hidden" name="CF_2" id="cf2" value="@Model.ID" />
+            <input type="hidden" name="PAYMENT_METHOD" id="paymentmethod1" value="AsMoney USD" />
+            <div class="method-holder">
+                <div class="method asmoney tooltip-1 selected" id="asmoney1">
+                    <div class="tooltip">
+                        <span>AsMoney</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method bitcoin tooltip-1" id="bitcoin1">
+                    <div class="tooltip">
+                        <span>Bitcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method litcoin tooltip-1" id="litecoin1">
+                    <div class="tooltip">
+                        <span>Litcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method dogecoin tooltip-1" id="dogecoin1">
+                    <div class="tooltip">
+                        <span>Dogecoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method peercoin tooltip-1" id="peercoin1">
+                    <div class="tooltip">
+                        <span>Peercoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method darkcoin tooltip-1" id="darkcoin1">
+                    <div class="tooltip">
+                        <span>Darkcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method pm tooltip-1" id="pm1">
+                    <div class="tooltip">
+                        <span>PerfectMoney</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="PAYEE_ACCOUNT" value="U8289470">
+            <input type="hidden" name="PAYEE_NAME" value="ManagerWAR">
+            <input type="hidden" name="STATUS_URL" value="https://managerwar.com/account/perfectmoney">
+            <input type="hidden" name="PAYMENT_URL" value="https://managerwar.com/">
+            <input type="hidden" name="PAYMENT_URL_METHOD" value="LINK">
+            <input type="hidden" name="NOPAYMENT_URL" value="https://managerwar.com/">
+            <input type="hidden" name="NOPAYMENT_URL_METHOD" value="LINK">
+            <input type="hidden" name="SUGGESTED_MEMO" value="Deposit to @Model.Fish with @User.Identity.GetUserName()">
+            <input type="hidden" name="BAGGAGE_FIELDS" value="CF_1 CF_2">
+
+            <input type="hidden" name="USER_NAME" value="managerwar" />
+            <input type="hidden" name="STORE_NAME" value="MANAGERWAR.COM" />
+            <input type="hidden" name="PAYMENT_UNITS" value="USD" />
+            <input type="hidden" name="PAYMENT_MEMO" value="Deposit to @Model.Fish with @User.Identity.GetUserName()" />
+            <input type="text" name="PAYMENT_AMOUNT" value="1" /> USD<br />
+            <input type="hidden" name="PAYMENT_ID" value="@User.Identity.GetUserId()" />
+            <input type="hidden" name="SUCCESS_URL" value="https://managerwar.com" />
+            <input type="hidden" name="CALLBACK_URL" value="http://managerwar.com/Account/AsMoney" />
+            <input type="hidden" name="FAIL_URL" value="https://managerwar.com" />
+            <input type="hidden" name="CF_1" value="@Model.Fish" />
+            <input type="submit" value="Pay" class="button_pay">
+        </form>
+    }
+    else
+    {
+        <form action="https://www.asmoney.com/sci.aspx" id="form2" method="post">
+            <input type="hidden" name="CF_2" id="cf3" value="@Model.ID" />
+            <input type="hidden" name="PAYMENT_METHOD" id="paymentmethod2" value="AsMoney USD" />
+            <div class="method-holder">
+                <div class="method asmoney tooltip-1 selected" id="asmoney2">
+                    <div class="tooltip">
+                        <span>AsMoney</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method bitcoin tooltip-1" id="bitcoin2">
+                    <div class="tooltip">
+                        <span>Bitcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method litcoin tooltip-1" id="litecoin2">
+                    <div class="tooltip">
+                        <span>Litcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method dogecoin tooltip-1" id="dogecoin2">
+                    <div class="tooltip">
+                        <span>Dogecoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method peercoin tooltip-1" id="peercoin2">
+                    <div class="tooltip">
+                        <span>Peercoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method darkcoin tooltip-1" id="darkcoin2">
+                    <div class="tooltip">
+                        <span>Darkcoin</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+                <div class="method pm tooltip-1" id="pm2">
+                    <div class="tooltip">
+                        <span>PerfectMoney</span>
+                        <div class="arrow"></div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="PAYEE_ACCOUNT" value="U8289470">
+            <input type="hidden" name="PAYEE_NAME" value="ManagerWAR">
+            <input type="hidden" name="STATUS_URL" value="https://managerwar.com/account/perfectmoney">
+            <input type="hidden" name="PAYMENT_URL" value="https://managerwar.com/">
+            <input type="hidden" name="PAYMENT_URL_METHOD" value="LINK">
+            <input type="hidden" name="NOPAYMENT_URL" value="https://managerwar.com/">
+            <input type="hidden" name="NOPAYMENT_URL_METHOD" value="LINK">
+            <input type="hidden" name="SUGGESTED_MEMO" value="Deposit to @Model.Fish with @User.Identity.GetUserName()">
+            <input type="hidden" name="BAGGAGE_FIELDS" value="CF_1 CF_2">
+
+            <input type="hidden" name="USER_NAME" value="managerwar" />
+            <input type="hidden" name="STORE_NAME" value="MANAGERWAR.COM" />
+            <input type="hidden" name="PAYMENT_UNITS" value="USD" />
+            <input type="hidden" name="PAYMENT_MEMO" value="Deposit to @Model.Fish with @User.Identity.GetUserName()" />
+            <input type="text" name="PAYMENT_AMOUNT" value="1" /> USD<br />
+            <input type="hidden" name="PAYMENT_ID" value="@User.Identity.GetUserId()" />
+            <input type="hidden" name="SUCCESS_URL" value="https://managerwar.com" />
+            <input type="hidden" name="CALLBACK_URL" value="http://managerwar.com/Account/AsMoney" />
+            <input type="hidden" name="FAIL_URL" value="https://managerwar.com" />
+            <input type="hidden" name="CF_1" value="@Model.Fish" />
+            <input type="submit" value="Pay" class="button_pay">
+        </form>
+    }
+}
+else
+{
+    @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+    <font> or </font>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+}

@@ -1,0 +1,697 @@
+﻿<div id="syncWarning" class="warning fullWidth status status1">
+    <div class="content">Something is wrong with the blockchain.info platform. Don't worry about your deposits but we will be able to display them properly when blockchain.info is up and running again. We must also postpone evaluating of finished rounds. Sorry.</div>
+</div>
+<div id="refreshWarning" class="warning fullWidth status status1">
+    <div class="content">WARNING: The data displayed are very outdated, please try to reload the page.</div>
+</div>
+<header>
+    <nav id="navbar">
+        <div class="quick-access container">
+
+            <div class="contact-access">
+                Simple, provably fair AsMoney, Bitcoin, Litecoin & PerfectMoney game.</p><br><br>
+            </div>
+            <div class="container">
+                <ul id="topics">
+                    <li>@Html.Partial("_LoginPartial")</li>
+                    <li><a href="~/Home/Howitwork">How it work?</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--quick-access-->
+
+        <div id="nav">
+            <div id="navinner">
+                <div class="logo"><img alt="logo" src="Content/logo.png"></div>
+                </ul>
+                <div id="roundHeader">
+                    <div class="content">
+                        <div id="previousRound"><a onclick="goToPreviousRound(); return false;" href="#"><i class="icon-arrow-left"></i>Previous round</a></div>
+                        <div id="nextRound"><a onclick="goToNextRound(); return false;" href="#">Next round<i class="icon-arrow-right"></i></a></div>
+                        <div id="roundStatus">
+                            <span class="roundID"></span>
+                            <span class="icon-dashboard "></span>
+                            <!-- if the round is ended -->
+                            <span class="icon-check "></span>
+                            <span class="status status1" style="display: inline;">
+                                This round ends in
+                                <span class="remainingTimeValue" id="remainingHours"></span> h :
+                                <span class="remainingTimeValue" id="remainingMinutes"></span> m :
+                                <span class="remainingTimeValue" id="remainingSeconds"></span> s
+                                <br>
+                                <!--span style="background-color: #f5ff7c; color: #c52e18; font-size: 14px; padding: 3px 10px;">We apologize for a mistake: Two rounds are currently running simultaneously. Both rounds will be evaluated normally.</span-->
+                            </span>
+                            <span class="status status2" style="display: none;">
+                                This round has finished and is currently being evaluated.<br>DO NOT SEND ANY MORE BITCOINS.
+                            </span>
+                            <span class="status status3" style="display: none;">
+                                This round has finished.<br>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--navbar-->
+
+</header>
+
+<div id="main" style="display: block;">
+    <div id="mainRules" class="fullWidth">
+    </div>
+    <div id="managerSummary" class="fixedWidth">
+        <div id="manager0summary" class="managerBox">
+            <div class="bubble">Help me fast to win this game so you get the SpongeBob investors’ money plus the site’s jackpot. This is awesome.</div>
+            <div class="managerImg img0"><img src="~/Content/squid1.png" height="264" /></div>
+            <div class="managerImg img1"><img src="~/Content/squid2.png" height="264" /></div>
+            <div class="managerImg img2"><img src="~/Content/squid3.png" height="264" /></div>
+            <div class="managerImg img3"><img src="~/Content/squid4.png" height="264" /></div>
+            <div class="managerImg img4"><img src="~/Content/squid5.png" height="264" /></div>
+            <div class="content1">
+                <div>The Squidward received:</div>
+                <div class="balance red">
+                    <span class="int"></span><span class="btc">.</span><span class="dec"></span>&nbsp;<span class="btc">USD</span>
+                </div>
+                <div class="unconfirmed"><span class="value"></span> USD (incl. unconfirmed)</div>
+                <div class="status status1 addrTitle">
+                    <p>If you want to invest to the Squidward,<br />send any amount with below form:</p>
+                    @Html.Partial("_DepositForm", ViewData["RedFish"])
+                </div>
+            </div>
+        </div>
+        <div class="managervs" id="managervs">
+        </div>
+        <div id="manager1summary" class="managerBox">
+            <div class="bubble2">Don't worry, I will be manager and you will win the Squidward investors' money and the site jackpot.</div>
+            <div class="managerImg img0"><img src="~/Content/bob1.png" height="264" /></div>
+            <div class="managerImg img1"><img src="~/Content/bob2.png" height="264" /></div>
+            <div class="managerImg img2"><img src="~/Content/bob3.png" height="264" /></div>
+            <div class="managerImg img3"><img src="~/Content/bob4.png" height="264" /></div>
+            <div class="managerImg img4"><img src="~/Content/bob5.png" height="264" /></div>
+            <div class="content1">
+                <div>The Spongebob received:</div>
+                <div class="balance green">
+                    <span class="int"></span><span class="btc">.</span><span class="dec"></span><span class="btc">&nbsp;USD</span>
+                </div>
+                <div class="unconfirmed"><span class="value"></span> USD (incl. unconfirmed)</div>
+                <div class="status status1 addrTitle">
+                    <p>If you want to invest to the Spongebob,<br />send any amount with below form:</p>
+                    @Html.Partial("_DepositForm", ViewData["GreenFish"])
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="clear"></div>
+
+<div id="RulesAndMoney" class="fullWidth">
+    <div class="content">
+        <div  id="jackpot" class="jackpot part">
+            <div class="title-part">Jackpot</div>
+            <span class="value"><span class="int"></span>.<span class="dec"></span> <span class="btc">USD</span></span>
+            <div class="comment">This jackpot will be added to bitcoins shared by winning team at the end of the round.</div>
+        </div>
+        <div class="fee part">
+            <div class="title-part">Fee</div>
+            <div class="valueBox">
+                <span class="value" id="currentFeeValue"><span class="int">46</span><span class="dot">.</span><span class="dec">351</span> %</span>
+            </div>
+            <div class="comment">
+                <p>
+                    This is what we subtract from your payment &mdash; it means that
+                    <span id="tomanagerValue"><span class="int">53</span><span class="dot">.</span><span class="dec">649</span></span> % will go to the character of your choice.
+                </p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+    <div id="payments" class="fixedWidth">
+
+        <div id="payments0" class="managerBox1">
+	        <div class="line"></div>
+                <div id="divnothing0" class="smallmanager" style="display:none">
+                    <div class="managerImgsmall"><img src="~/Content/squid1.png" height="132" /></div>
+                </div>
+                <div class="needed left">
+                    <div class="smallmanager">
+                        <div class="managerImg img0 hjf"><img src="~/Content/squid1.png" height="132" /></div>
+                        <div class="managerImg img1 hjf"><img src="~/Content/squid2.png" height="132" /></div>
+                        <div class="managerImg img2 hjf"><img src="~/Content/squid3.png" height="132" /></div>
+                        <div class="managerImg img3 hjf"><img src="~/Content/squid4.png" height="132" /></div>
+                        <div class="managerImg img4 hjf"><img src="~/Content/squid5.png" height="132" /></div>
+                    </div>
+                    <div class="paymentNeededBox">
+                        <div class="box">
+                            <div class="content">
+                                <div class="comment"><span class="help">Help!</span> I need at least this payment to survive:</div>
+                                <div class="payment">
+                                    <div class="confirmed">
+                                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                                        <div class="values">
+                                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                                            <span class="fee"> + fee <span class="value white"></span></span>
+                                        </div>
+                                        <div class="comment">
+                                            <span class="share">= <span class="value white"></span> % share</span> |
+                                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>(or multiple small payments)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="recent-p">
+                <h2 class="white">Recent payments:</h2>
+
+                <div class="payment payment0">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment1">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment2">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment3">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment4">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment5">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment6">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment7">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment8">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment9">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment more">
+                    + <span class="value">XX</span> previous payments
+                </div>
+                </div>
+                <div class="calculator">
+                    <div class="content">
+                        <h2>Calculator</h2>
+
+                        <div class="subtitle">What if I sent <input class="calcInput" type="text" />USD?</div>
+                        <div class="payment">
+                            <div class="confirmed">
+                                <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                                <div class="values">
+                                    =&nbsp;<span class="tomanager red"><span class="value"></span></span>
+                                    <span class="fee"> + fee <span class="value white"></span></span>
+                                </div>
+                                <div class="comment">
+                                    <span class="share">= <span class="value white"></span> % share</span> |
+                                    <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+</div>
+        <div id="payments1" class="managerBox1">
+        <div class="line"></div>
+            <div id="divnothing1" class="smallmanager" style="display:none">
+                <div class="managerImgsmall"><img src="~/Content/bob1.png" height="132" /></div>
+            </div>
+                <div class="needed right">
+                    <div class="smallmanager">
+                        <div class="managerImg img0 hjf"><img src="~/Content/bob1.png" height="132" /></div>
+                        <div class="managerImg img1 hjf"><img src="~/Content/bob2.png" height="132" /></div>
+                        <div class="managerImg img2 hjf"><img src="~/Content/bob3.png" height="132" /></div>
+                        <div class="managerImg img3 hjf"><img src="~/Content/bob4.png" height="132" /></div>
+                        <div class="managerImg img4 hjf"><img src="~/Content/bob5.png" height="132" /></div>
+                    </div>
+                    <div class="paymentNeededBox">
+
+                        <div class="box">
+                            <div class="content">
+                                <div class="comment"><span class="help">Help!</span> I need at least this payment to survive:</div>
+                                <div class="payment">
+                                    <div class="confirmed">
+                                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                                        <div class="values">
+                                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                                            <span class="fee"> + fee <span class="value white"></span></span>
+                                        </div>
+                                        <div class="comment">
+                                            <span class="share">= <span class="value white"></span> % share</span> |
+                                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>(or multiple small payments)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div class="recent-p">
+                <h2 class="white">Recent payments:</h2>
+
+                <div class="payment payment0">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment1">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment2">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment3">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment4">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment5">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment6">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment7">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment8">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment payment9">
+                    <div class="unconfirmed">
+                        <div class="head"><span class="value"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager"><span class="value">xxx</span></span>
+                            <span class="fee"> + fee <span class="value">xxx</span></span>
+                        </div>
+                        <div class="comment"></div>
+                    </div>
+                    <div class="confirmed">
+                        <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                        <div class="values">
+                            =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                            <span class="fee"> + fee <span class="value white"></span></span>
+                        </div>
+                        <div class="comment">
+                            <span class="share">= <span class="value white"></span> % share</span> |
+                            <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment more">
+                    + <span class="value"></span> previous payments
+                </div>
+                </div>
+                <div class="calculator">
+                    <div class="content">
+                        <h2>Calculator</h2>
+
+                        <div class="subtitle">What if I sent <input class="calcInput" type="text" />USD?</div>
+                        <div class="payment">
+                            <div class="confirmed">
+                                <div class="head"><span class="value white"></span> from <span class="addr"></span></div>
+                                <div class="values">
+                                    =&nbsp;<span class="tomanager green"><span class="value"></span></span>
+                                    <span class="fee"> + fee <span class="value white"></span></span>
+                                </div>
+                                <div class="comment">
+                                    <span class="share">= <span class="value white"></span> % share</span> |
+                                    <span class="estimate"><span class="label"></span><span class="value white"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="clear"></div>
+    </div>
+<center>
+    <div>
+        <iframe data-aa='42695' src='//ad.a-ads.com/42695?size=728x90' scrolling='no' style='width:728px; height:90px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+    </div>
+    <div>
+	<iframe data-aa='42693' src='//ad.a-ads.com/42693?size=468x60' scrolling='no' style='width:468px; height:60px; border:0px; padding:0;overflow:hidden' allowtransparency='true'></iframe>
+    </div>
+</center>
+<div class="social">
+    <a href="https://www.facebook.com/managerwar" class="Facebook" target="_blank"><i class="icon-facebook"></i></a>    
+    <a href="https://plus.google.com/105121015948520456127" rel="publisher" class="Google Plus" target="_blank"><i class="icon-google-plus"></i></a>
+    <a href="https://twitter.com/managerwar" class="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+</div>
+

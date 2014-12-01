@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Managerwar.com - SpongeBob VS Squidward</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="icon" type="image/png" href="~/Content/favicon.png" />
+
+    <!--link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'-->
+    <link href='~/style/css.css' rel='stylesheet' type='text/css'>
+
+    <script>
+        _gameID = 1;
+    </script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/managerwar.js?v=35"></script>
+
+    <link rel="stylesheet" href="~/Content/managerwar.css" />
+    <link media="all" href="~/Content/widget000.css" type="text/css" rel="stylesheet">
+    <link media="all" href="~/Content/floating010.css" type="text/css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-54394301-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+        @RenderBody()
+
+
+    @RenderSection("scripts", required: false)    
+    
+
+    <div class="uk-grid">
+        <div class="uk-width-1-4 color-bars bg-purple"></div>
+        <div class="uk-width-1-4 color-bars bg-red"></div>
+        <div class="uk-width-1-4 color-bars bg-green"></div>
+        <div class="uk-width-1-4 color-bars bg-blue"></div>
+    </div>
+    <div class="footerx">
+        <div class="fixedWidth">
+            <div class="uk-width-1-3">
+                <b>Connect to other players on forums:</b><br /><br />
+                <a href="https://bitcointalk.org/index.php?topic=769769.0">BitcoinTalk forum</a><br />
+                <a href="http://www.talkgold.com/forum/r422811-.html">Talkgold forum</a><br />
+                <a href="#">Moneymakergroup forum</a>
+            </div>
+            <div class="uk-width-1-3">
+                <b>Request support, question or any iniquery:</b><br /><br />
+                <a href="mailto:Support@managerwar.com">Support@managerwar.com</a><br /><br />
+            </div>
+            <div class="uk-width-1-3 noborder">	
+                <a href="https://www.asmoney.com" target="_blank"><img src="~/Content/1.png"></a> 
+                <a href="https://bitcoin.org" target="_blank">
+                    <img src="~/Content/2.png"></a>
+                    <br><br><a href="https://litecoin.org" target="_blank"><img src="~/Content/3.png"></a>
+</div>
+        </div>
+
+            </div>
+    <div class="expandfooter">
+
+        <footer class="footcontain">
+
+            <div class="foot1">
+                <div id="cacheSeconds" class="status status1 fullWidth">
+                    Last refreshed <span id="lastRefreshedValue">...</span> seconds ago | Last synchronized with blockchain.info
+                    <span id="cacheSecondsValue">...</span> seconds ago
+                </div>
+            </div>
+        </footer>
+     
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.method-holder .method').each(function () {
+            $(this).click(function () {
+                $('.method-holder .method').removeClass('selected');
+                $(this).addClass('selected');
+                document.getElementById("form1").setAttribute("action", "https://www.asmoney.com/sci.aspx");
+                document.getElementById("form2").setAttribute("action", "https://www.asmoney.com/sci.aspx");
+                if (this.id == "asmoney1")
+                {
+                    var inp = document.getElementById("paymentmethod1");                    
+                    inp.setAttribute("value", "AsMoney USD");
+                }
+                if (this.id == "asmoney2") {
+                    var inp = document.getElementById("paymentmethod2");
+                    inp.setAttribute("value", "AsMoney USD");
+                }
+                if (this.id == "bitcoin1") {
+                    var inp = document.getElementById("paymentmethod1");
+                    inp.setAttribute("value", "BITCOIN");
+                }
+                if (this.id == "bitcoin2") {
+                    var inp = document.getElementById("paymentmethod2");
+                    inp.setAttribute("value", "BITCOIN");
+                }
+                if (this.id == "litecoin1") {
+                    var inp = document.getElementById("paymentmethod1");
+                    inp.setAttribute("value", "LITECOIN");
+                }
+                if (this.id == "litecoin2") {
+                    var inp = document.getElementById("paymentmethod2");
+                    inp.setAttribute("value", "LITECOIN");
+                }
+                if (this.id == "pm1") {
+                    document.getElementById("form1").setAttribute("action", "https://perfectmoney.is/api/step1.asp");
+                }
+                if (this.id == "pm2") {
+                    document.getElementById("form2").setAttribute("action", "https://perfectmoney.is/api/step1.asp");
+                }
+
+            });
+        });
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@model WebsiteCreatorMVC.Models.RegisterViewModel
+@{
+    Layout = "~/Views/Account/_Account.cshtml";
+    ViewBag.Title = "Register";
+}
+
+<div id="main" style="display: block;">
+    <div class="fullWidth" id="login">
+        <div class="content">
+            <div class="login-form">
+                <h1>Register</h1>
+                <hr>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    @Html.ValidationSummary()
+    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Username" })
+                        @Html.ValidationMessageFor(m => m.Email)
+                        <span class="input-icon"><i class=" icon-user"></i></span>
+    </div>
+    <div class="form-group">
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+        @Html.ValidationMessageFor(m => m.Password)
+        <span class="input-icon"><i class="icon-lock"></i></span>
+    </div>
+    <div class="form-group">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        <span class="input-icon"><i class="icon-lock"></i></span>
+    </div>
+    <div class="form-group">
+                        @Html.TextBoxFor(m => m.AsMoneyAccount, new { @class = "form-control", @placeholder = "Your AsMoney Account (Optional)" })
+                        @Html.ValidationMessageFor(m => m.AsMoneyAccount)
+                        <span class="input-icon"><i class=" icon-user"></i></span>
+    </div>
+    <div class="form-group">
+                        @Html.TextBoxFor(m => m.BitcoinAddress, new { @class = "form-control", @placeholder = "Your Bitcoin Address (Optional)" })
+                        @Html.ValidationMessageFor(m => m.BitcoinAddress)
+                        <span class="input-icon"><i class=" icon-user"></i></span>
+    </div>
+    <div class="form-group">
+                        @Html.TextBoxFor(m => m.LitecoinAddress, new { @class = "form-control", @placeholder = "Your Litecoin Address (Optional)" })
+                        @Html.ValidationMessageFor(m => m.LitecoinAddress)
+                        <span class="input-icon"><i class=" icon-user"></i></span>
+    </div>
+    <div class="form-group">
+                        @Html.TextBoxFor(m => m.PerfectMoney, new { @class = "form-control", @placeholder = "Your PerfectMoney account (Optional)" })
+                        @Html.ValidationMessageFor(m => m.PerfectMoney)
+                        <span class="input-icon"><i class=" icon-user"></i></span>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="button_fullwidth" value="Register" />
+
+            </div>
+        </div>
+}
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

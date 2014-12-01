@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "How Does It Work?!";
+}
+
+<header>
+    <nav id="navbar">
+        <div class="quick-access container">
+            <div class="contact-access">
+                Simple, provably fair AsMoney, Bitcoin & Litecoin game.</p><br><br>
+            </div>
+            <div class="container">
+                <ul id="topics">
+                    <li>@Html.Partial("_LoginPartial")</li>
+                    <li><a href="~/Home/Howitwork">How it work?</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--quick-access-->
+
+        <div id="nav">
+            <div id="navinner">
+                <div class="logo"><img alt="logo" src="../Content/logo.png"></div>
+                <div id="roundHeader">
+                    <div class="content">
+                        <a href="http://managerwar.com"><b><< Back to Home page</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--navbar-->
+
+</header>
+<div class="howbox">
+    <div class="howtext">
+
+       <h2>War Story</h2>
+        <p>
+            This is a war between Spongebob and Squidward, it's a competition to become manager of Krusty krab restaurant 2.<br /><br />
+            The rules are simple, who has higher balance at the end of the round wins. As you win a competition, you will receive your investments back, plus the share of the looser bitcoins balance, plus the share of the jackpot. This share is proportional according to each player’s deposit.<br />
+        </p>
+        <h2>Rounds</h2>
+        <p>
+            The game consists of rounds. Each round runs for 6 hours, starting every day at 6 a. m., 12 p. m., 6 p. m. and 12 a. m. (i. e. 23:00, 5:00, 11:00 and 17:00 in your timezone).
+        </p>
+        <h2>Winners</h2>
+        <p>All the winnings are sent to you in an e-currency have been set while registered in Managerwar.com.
+            It doesn't differ what deposit method has been used. for example, you may deposit via litecoin and receive winning amount into your bitcoin address.</p>
+        <h2>Jackpot</h2>
+        <p>There is a jackpot in every round (funded by managerwar.com) — a fixed value that will be added to bitcoins shared by the winning team. With increasing number of players , jackpot amount gets higher.</p>
+        <h2>Fee</h2>
+        <p>There is a fee charged to each transaction you make. Fee is subtracted from the amount of bitcoins you send and the rest is added to the manager of your choice.
+The fee rate is slowly rising the time deadline is reaching. It always starts at 0 % and rises up to 50 % at the end of the round. In every moment you can see what the current fee rate is. For computing the fee for your payment we always use the "received time" of your transaction (not the time of confirmation). Usually it takes only few seconds from sending your payment to receiving it by us.
+</p>
+        <h2>Payment Methods</h2>
+        <p>You can invest and withdrawal via Bitcoin, Litecoin and AsMoney, you write amount based on dollar and your bitcoin automatically change to dollar amount in payment gateway based on live rates. If you deposit money via AsMoney, your transfer will be done without any confirmation if you invest via bitcoin, your payment should be confirmed in the bitcoin network (included into a block), it is not added to the balance and appears with the note "unconfirmed" in the list of recent payments. It can take several minutes, sometimes up to one hour, to mark the transaction as confirmed.</p>
+        <p>Payments that are received before the end of the round but confirmed after the end of the round are not counted and we return them to sender. We don't return payments that are received after the end of the round.</p>
+
+        <h2>Example</h2>
+        <p>jackpot of current round is 10 $ , You send 100$ to the Spongebob. The fee rate is 1 % which means 1$ is deducted from your investment. The rest, 99$ , is added to the Spongebob's balance.</p>
+        <p>The round ends. The final balance of the Spongebob is 600$, whereas the Squidward has only received 500$ in total. Congratulations, your manager wins! Your share is 99 / 600 = 16.5 % (your investment represents 16.5 % of Spongebob balance). This means you have won 16.5 % of 510 $ (the Squidward balance 500$, plus the jackpot 10$), which is 83.15 $. In addition you receive your original investment back so the total amount you will be given is 83.15 + 99$ = 182.15 $</p>
+
+        <h2>What is Bitcoin?</h2>
+        <iframe width="640" height="360" src="//www.youtube.com/embed/Gc2en3nHxA4?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+
+        @*<h2>Where can I buy bitcoin</h2>
+        <table id="exlist">
+            <tbody>
+                <tr>
+                    <th>
+                        Company
+                    </th>
+                    <th>
+                        Payment Methods
+                    </th>
+                    <th>
+                        Languages
+                    </th>
+                </tr>
+                <tr align="center" style="color:black;">
+                    <td" style="color:black;"> <a href="http://btc-e.com/" target="_blank" style="color: #666;">btc-e.com</a></td">
+                    <td" style="color:black;">
+                        International WireTransfer,
+                        Perfectmoney,
+                        Egopay,
+                        Okpay,
+                        Payeer,
+                        Ecoin,
+                        Epese,
+                        Webmoney,
+                        Paypal,
+                        Okpay,
+                        Liqpay,
+                        Payza
+                    </td>
+                    <td" style="color:black;">
+                        English, Russian, Chinese
+                    </td">
+                </tr>
+                <tr>
+                    <td> <a href="http://localbitcoins.com/" target="_blank">localbitcoins.com</a></td>
+                    <td>
+                        Various payment method depends available on your location
+                    </td>
+                    <td>
+                        English
+                    </td>
+                </tr>
+                <tr>
+                    <td> <a href="http://hibtc.com" target="_blank">hibtc.com</a> </td>
+                    <td>
+                        Wire Transfer, BTC , LTC
+                    </td>
+                    <td>
+                        English
+                    </td>
+                </tr>
+                <tr>
+                    <td> <a href="https://www.virvox.com" target="_blank">VirVox.com</a> </td>
+                    <td>
+                        Second Life, Paypal, Credit &amp; Debit cards, Skrill, Neteller,
+                        paysafecard, SEPA bank transfer.
+                    </td>
+                    <td>
+                        English
+                    </td>
+                </tr>
+            </tbody>
+        </table>*@
+    </div>
+ </div>

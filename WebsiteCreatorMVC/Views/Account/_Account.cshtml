@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" type="image/png" href="../Content/favicon.png" />
+
+    <!--link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'-->
+    <link href='../style/css.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../Content/managerwar.css" />
+    <link media="all" href="../Content/widget000.css" type="text/css" rel="stylesheet">
+    <link media="all" href="../Content/floating010.css" type="text/css" rel="stylesheet">
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <header>
+        <nav id="navbar">
+            <div class="quick-access container">
+                <div class="contact-access">
+                    Simple, provably fair AsMoney, Bitcoin & Litecoin game.</p><br><br>
+                </div>
+                <div class="container">
+                    <ul id="topics">
+                        <li>@Html.Partial("_LoginPartial")</li>
+                        <li><a href="~/Home/Howitwork">How it work?</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--quick-access-->
+
+            <div id="nav">
+                <div id="navinner">
+                    <div class="logo"><img alt="logo" src="../Content/logo.png"></div>
+                    <div id="roundHeader">
+                        <div class="content">
+                            <a href="http://managerwar.com"><b><< Back to Home page</b></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </nav>
+        <!--navbar-->
+
+    </header>
+    <div>
+
+        @RenderBody()
+
+
+        @RenderSection("scripts", required: false)
+        
+    </div>
+</body>
+</html>
